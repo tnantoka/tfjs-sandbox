@@ -11,17 +11,21 @@ const ja = {
   sexual_explicit: 'あからさまに性的な内容',
   threat: '脅迫',
   toxicity: '有害',
-}
+};
 
 export default function Toxicity() {
   const [sentences, setSentences] = React.useState(
-`You are a poopy head!
+    `You are a poopy head!
 I like turtles
 Shut up!
-`);
+`
+  );
   const [predictions, setPredictions] = React.useState([]);
 
-  const inputs = sentences.split('\n').filter((sentence) => sentence);
+  const inputs = React.useMemo(
+    () => sentences.split('\n').filter((sentence) => sentence),
+    [sentences]
+  );
 
   React.useEffect(() => {
     toxicity.load(threshold).then((model) => {
@@ -30,11 +34,11 @@ Shut up!
         setPredictions(predictions);
       });
     });
-  }, [sentences])
+  }, [inputs]);
 
   const onChangeSentences = React.useCallback((e) => {
     setSentences(e.target.value);
-  }, [])
+  }, []);
 
   return (
     <>
@@ -60,16 +64,18 @@ Shut up!
           {inputs.map((text, i) => (
             <tr key={text}>
               <td>{text}</td>
-              {predictions.map(({ label, results }) => (
-                results[i] !== undefined && (
-                  <td key={label}>{Math.round(results[i].probabilities[1] * 100)}%</td>
-                )
-              ))}
-            </tr> 
+              {predictions.map(
+                ({ label, results }) =>
+                  results[i] !== undefined && (
+                    <td key={label}>
+                      {Math.round(results[i].probabilities[1] * 100)}%
+                    </td>
+                  )
+              )}
+            </tr>
           ))}
         </tbody>
       </table>
-      
     </>
   );
 }
