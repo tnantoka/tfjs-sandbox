@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 
-const examples = ['hello'];
+const examples = ['hello', 'toxicity'];
 
 const Home: NextPage = () => {
   return (
@@ -20,7 +20,7 @@ const Home: NextPage = () => {
       <ul>
         {examples.map((example) => (
           <li key={example}>
-            <Link href={`/${example}`}>{example}</Link>
+            <Link href={`/examples/${example}`}>{example}</Link>
             <br />
           </li>
         ))}

@@ -10,7 +10,8 @@
     "format": "prettier --write pages"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "^3.18.0",
+    "@tensorflow-models/toxicity": "^1.2.2",
+    "@tensorflow/tfjs": "^3.1.8",
     "next": "12.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
