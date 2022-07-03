@@ -1,7 +1,15 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 
-const examples = ['hello', 'toxicity', 'truck'];
+const examples = [
+  'hello',
+  'toxicity',
+  'truck',
+  'tensor',
+  'tic_tac_toe',
+  'recommendation',
+  'canvas',
+];
 
 const Home: NextPage = () => {
   return (
