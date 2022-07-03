@@ -1,7 +1,7 @@
 import React from 'react';
 import * as tf from '@tensorflow/tfjs';
 
-import { CLASSES } from './ssd_mobilenet_labels';
+import { CLASSES } from '../../labels/ssd_mobilenet_labels';
 
 export default function SsdMobilenet() {
   const imgRef = React.useRef(null);

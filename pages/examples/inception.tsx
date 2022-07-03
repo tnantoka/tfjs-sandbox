@@ -1,7 +1,7 @@
 import React from 'react';
 import * as tf from '@tensorflow/tfjs';
 
-import { INCEPTION_CLASSES } from './inception_labels';
+import { INCEPTION_CLASSES } from '../../labels/inception_labels';
 
 export default function Inception() {
   const imgRef = React.useRef(null);
