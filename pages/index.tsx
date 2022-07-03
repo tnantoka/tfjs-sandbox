@@ -6,9 +6,9 @@ const examples = [
   'toxicity',
   'truck',
   'tensor',
-  'tic_tac_toe',
   'recommendation',
   'canvas',
+  'tic_tac_toe',
 ];
 
 const Home: NextPage = () => {
