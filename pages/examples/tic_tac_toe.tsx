@@ -10,7 +10,7 @@ type BoardProps = {
   player: string;
   bot: string;
   next?: number;
-}
+};
 
 const Board: React.FC<BoardProps> = ({ cells, player, bot, next = -1 }) => {
   return (
@@ -19,26 +19,25 @@ const Board: React.FC<BoardProps> = ({ cells, player, bot, next = -1 }) => {
         {new Array(3).fill(0).map((_, i) => (
           <tr key={i}>
             {new Array(3).fill(0).map((_, j) => {
-              const index = i * 3 + j; 
+              const index = i * 3 + j;
               return (
                 <td key={j}>
-                  {index === next 
+                  {index === next
                     ? '*'
                     : cells[index] === 0
                     ? '\u00A0\u00A0'
                     : cells[index] === 1
                     ? bot
-                    : player
-                  }
+                    : player}
                 </td>
-              )
+              );
             })}
           </tr>
         ))}
       </tbody>
     </table>
   );
-}
+};
 
 export default function TicTacToe() {
   const [nexts, setNexts] = React.useState([]);
@@ -51,7 +50,7 @@ export default function TicTacToe() {
           const emptyBoard = tf.tensor(empty);
           const betterBlockMe = tf.tensor(block);
           const goForTheKill = tf.tensor(kill);
-        
+
           const matches = tf.stack([emptyBoard, betterBlockMe, goForTheKill]);
           const result = model.predict(matches);
           setNexts(tf.topk(result, 1).indices.dataSync());
