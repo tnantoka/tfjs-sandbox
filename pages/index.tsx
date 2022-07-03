@@ -9,6 +9,7 @@ const examples = [
   'recommendation',
   'canvas',
   'tic_tac_toe',
+  'inception',
 ];
 
 const Home: NextPage = () => {
