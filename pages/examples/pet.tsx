@@ -6,6 +6,7 @@ import { INCEPTION_CLASSES } from './labels';
 export default function Mobilenet() {
   const imgRef = React.useRef(null);
   const canvasRef = React.useRef(null);
+  const cropRef = React.useRef(null);
   const [predictions, setPredictions] = React.useState([]);
 
   React.useEffect(() => {
@@ -50,10 +51,22 @@ export default function Mobilenet() {
             console.log(startX, startY, width, height);
             ctx.strokeRect(startX, startY, width, height);
           });
+
+          const tHeight = tensor.shape[0];
+          const tWidth = tensor.shape[1];
+          const tStartX = box[0] * tWidth;
+          const tStartY = box[1] * tHeight;
+          const cropLength = Math.floor((box[2] - box[0]) * tWidth);
+          const cropHeight = Math.floor((box[3] - box[1]) * tHeight);
+          const startPos = [tStartY, tStartX, 0];
+          const cropSize = [cropHeight, cropLength, 3];
+          const cropped = tf.slice(tensor, startPos, cropSize);
+
+          tf.browser.toPixels(cropped, cropRef.current);
         });
       });
     });
-  }, [imgRef, canvasRef]);
+  }, [imgRef, canvasRef, cropRef]);
 
   return (
     <>
@@ -74,6 +87,10 @@ export default function Mobilenet() {
 
       <p>
         <canvas ref={canvasRef} width={640} height={425} />
+      </p>
+
+      <p>
+        <canvas ref={cropRef} width={300} height={300} />
       </p>
     </>
   );
