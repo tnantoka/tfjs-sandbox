@@ -12,6 +12,10 @@ export default function Canvas() {
   const [pixels, setPixels] = React.useState('');
 
   React.useEffect(() => {
+    if (!checkRef.current) {
+      return;
+    }
+
     tf.tidy(() => {
       const lil = tf.tensor([
         [[1], [0]],
@@ -27,6 +31,10 @@ export default function Canvas() {
   }, [checkRef]);
 
   React.useEffect(() => {
+    if (!randomRef.current) {
+      return;
+    }
+
     tf.tidy(() => {
       const bigMess = tf.randomUniform([200, 200, 3]);
       tf.browser.toPixels(bigMess, randomRef.current);
@@ -62,9 +70,13 @@ export default function Canvas() {
       const cropped = tf.slice(tensor, [0, 10, 0], [30, 20]);
       tf.browser.toPixels(cropped, cropRef.current);
     });
-  }, [imgRef, mirrorRef, resizeRef]);
+  }, [imgRef, mirrorRef, resizeRef, cropRef]);
 
   React.useEffect(() => {
+    if (!sortRef.current) {
+      return;
+    }
+
     tf.tidy(() => {
       const rando = tf.randomUniform([200, 200]);
       const sorted = tf.topk(rando, 200).values;
