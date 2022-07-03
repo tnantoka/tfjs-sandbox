@@ -1,9 +1,7 @@
 import React from 'react';
 import * as tf from '@tensorflow/tfjs';
 
-import { INCEPTION_CLASSES } from './labels';
-
-export default function Mobilenet() {
+export default function Pet() {
   const imgRef = React.useRef(null);
   const canvasRef = React.useRef(null);
   const cropRef = React.useRef(null);

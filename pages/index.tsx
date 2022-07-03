@@ -10,6 +10,7 @@ const examples = [
   'canvas',
   'tic_tac_toe',
   'inception',
+  'ssd_mobilenet',
 ];
 
 const Home: NextPage = () => {

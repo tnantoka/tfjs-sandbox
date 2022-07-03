@@ -1,9 +1,9 @@
 import React from 'react';
 import * as tf from '@tensorflow/tfjs';
 
-import { INCEPTION_CLASSES } from './labels';
+import { INCEPTION_CLASSES } from './inception_labels';
 
-export default function Mobilenet() {
+export default function Inception() {
   const imgRef = React.useRef(null);
   const [predictions, setPredictions] = React.useState([]);
 

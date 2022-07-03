@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-export default function Mobilenet() {
+export default function Truck() {
   const [predictions, setPredictions] = React.useState([]);
 
   React.useLayoutEffect(() => {
