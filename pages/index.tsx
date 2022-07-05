@@ -11,6 +11,7 @@ const examples = [
   'tic_tac_toe',
   'inception',
   'ssd_mobilenet',
+  'train',
 ];
 
 const Home: NextPage = () => {
